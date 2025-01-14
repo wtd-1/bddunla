@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Brendan's Personal Website</title>
+
+  <link rel="icon" type="image/png" href="favicon.png" sizes="32x32" />
+
+  <!-- Include style sheets -->
+  <link rel="stylesheet" href="main.css" />
+
+  <!-- Fonts from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet" />
+
+  <!-- Load FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous"
+  />
+
+  <!-- Style for Dark and Light Themes -->
+  <style>
+    :root {
+      --background-color: white;
+      --text-color: black;
+      --link-color: blue;
+      --icon-color: black;
+    }
+
+    [data-theme="dark"] {
+      --background-color: #121212;
+      --text-color: #ffffff;
+      --link-color: #bb86fc;
+      --icon-color: white;
+    }
+
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    .icons i, .icons img {
+      color: var(--icon-color);
+      fill: var(--icon-color);
+      width: 30px;
+      height: 30px;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      color: var(--icon-color);
+      font-size: 36px;
+    }
+
+    .icons {
+    list-style-type: none; /* Removes bullets */
+    display: flex; /* Allows centering of children horizontally */
+    justify-content: center; /* Centers the list items horizontally */
+    padding: 0; /* Removes padding */
+    margin: 0 auto; /* Centers the ul itself */
+}
+
+.icons li {
+    margin: 0 10px; /* Optional spacing between list items */
+}
+
+.icons a {
+    text-decoration: none; /* Removes underline from the link */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures full viewport height */
+    margin: 0; /* Removes default body margin */
+}
+
+  </style>
+</head>
+
+<body>
+  <section id="content">
+    <h1>Hi, I'm Brendan Dunlap.</h1>
+    <p>
+      I'm studying for my Bachelor's of <br>Science in Computer Engineering.
+    </p>
+    <p>
+      Check out the links below for more. <br> You can even change the theme.
+    </p>
+
+    <ul class="icons">
+      <li>
+        <a href="https://www.linkedin.com/in/brendan-dunlap-28b205283/" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      <li> <a href="https://utd.ms/" title="makerspace"> 
+        <img src="maker.png" alt="makerspace" class="theme-icon"> </a> 
+      </li> 
+      <li> <!--This is a space for separation--></li> 
+        <li>
+            <a href="javascript:void(0);" class="theme-toggle" id="theme-toggle" title="Switch Theme">
+              <i class="fas fa-sun"></i>
+            </a>
+          </li>
+      </li>
+      <li> <!--This is a space for separation--></li>  
+      <li> <a href="https://www.aiaautd.org/" title="LinkedIn"> 
+        <img src="https://bddunla.github.io/web/aiaa.png" alt="aiaa" class="theme-icon"> </a> 
+      </li> 
+      <li> <a href="https://ece.utdallas.edu/" title="Institutional website"> 
+        <i class="fas fa-university"></i> </a> 
+      </li>
+    </ul>
+  </section>
+
+  <script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+
+    // Apply saved theme on page load
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    toggleButton.addEventListener('click', () => {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+
+      // Update the icon (e.g., sun for light mode, moon for dark mode)
+      const icon = toggleButton.querySelector('i');
+      icon.classList.toggle('fa-sun', theme === 'light');
+      icon.classList.toggle('fa-moon', theme === 'dark');
+    });
+
+    // Initialize the correct icon based on the saved theme
+    const icon = toggleButton.querySelector('i');
+    icon.classList.toggle('fa-sun', currentTheme === 'light');
+    icon.classList.toggle('fa-moon', currentTheme === 'dark');
+  </script>
+</body>
+
+</html>
